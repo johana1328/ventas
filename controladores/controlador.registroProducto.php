@@ -1,26 +1,34 @@
 <?php
-require '../dao/RegistroProductoDao.php';
-require '../dto/RegistroProductoDto.php';
+require '../modelo.dao/RegistroProductoDao.php';
+require '../modelo.dto/RegistroProductoDto.php';
 require '../utilidades/conexion.php';
 
-if (isset($_POST['registro'])) {
+if (isset($_POST["registrar"])) {
+    registrar();
+} else if (isset($_POST["modificar"])) {
+    modificar();
+}
+
+function registrar(AdministradorDto $administradorDto, ProductoDto $productoDto)
+{
     $rpDao = new RegistroProductoDao();
     $rpDto = new RegistroProductoDto();
+
     $rpDto->setIdRegistroProducto($_POST['idRegistroProducto']);
-    $rpDto->setIdAdministrador($_POST['idAdministrador']);
-    $rpDto->setIdProducto($_POST['idProducto']);
+    $rpDto->setIdAdministrador($administradorDto);
+    $rpDto->setIdProducto($productoDto);
+    $msg = $rpDao->registrarRegistroProducto($rpDto);
+    header("Location:../index.php?msg=$msg");
+}
 
-
-    $mensaje = $rpDao->registrarRegistroProducto($rpDto);
-
-    header("Location:../registro.php?mensaje=" . $mensaje);
-} else if (isset($_POST['modificar'])) {
+function modificar(AdministradorDto $administradorDto, ProductoDto $productoDto)
+{
     $rpDao = new RegistroProductoDao();
     $rpDto = new RegistroProductoDto();
-    $rpDto->setIdRegistroProducto($_POST['idRegistroProducto']);
-    $rpDto->setIdAdministrador($_POST['idAdministrador']);
-    $rpDto->setIdProducto($_POST['idProducto']);
 
-    $mensaje = $rpDao->modificarRegistroProducto($rpDto);
-    header("Location: ../listado.php?mensaje=" . $mensaje);
+    $rpDto->setIdRegistroProducto($_POST['idRegistroProducto']);
+    $rpDto->setIdAdministrador($administradorDto);
+    $rpDto->setIdProducto($productoDto);
+    $msg = $rpDao->modificarRegistroProducto($rpDto);
+    header("Location:../index.php?msg=$msg");
 }

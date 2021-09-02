@@ -1,6 +1,6 @@
 <?php
-require '../dao/ProductoDao.php';
-require '../dto/ProductoDto.php';
+require '../modelo.dao/ProductoDao.php';
+require '../modelo.dto/ProductoDto.php';
 require '../utilidades/conexion.php';
 
 if (isset($_POST['registro'])) {

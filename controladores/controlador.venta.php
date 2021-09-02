@@ -19,7 +19,7 @@ function registrar(ClienteDto $clienteDto)
     $ventaDto->setMetodoPago($_POST["metodoPago"]);
     $ventaDto->setCliente($clienteDto);
     $msg = $ventaDao->registrar($ventaDto);
-    header("Location:../index.php?msg=$msg");
+    header("Location:../index.php?msg=$msg"); 
 }
 
 function modificar(ClienteDto $clienteDto)

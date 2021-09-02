@@ -1,8 +1,8 @@
 <?php
 
+require "../modelo.dto/AdministradorDto.php";
+require "../modelo.dao/AdministradorDao.php";
 require '../utilidades/conexion.php';
-require "../modelo.dto/ClienteDto.php";
-require "../modelo.dao/ClienteDao.php";
 
 if (isset($_POST["registrar"])) {
     registrar();
@@ -12,19 +12,19 @@ if (isset($_POST["registrar"])) {
 
 function registrar(UsuarioDto $usuarioDto)
 {
-    $clienteDto = new ClienteDto();
-    $clienteDao = new ClienteDao();
+    $adminDto = new AdministradorDto();
+    $adminDao = new AdministradorDao();
 
-    $clienteDto->setUsuario($usuarioDto);
-    $msg = $clienteDao->registrar($clienteDto);
+    $adminDto->setUsuario($usuarioDto);
+    $msg = $adminDao->registrar($adminDto);
     header("Location:../index.php?msg=$msg");
 }
 
 function eliminar()
 {
     if (isset($_POST["eliminar"])) {
-        $clienteDao = new ClienteDao();
-        $msg = $clienteDao->eliminar($_GET["eliminar"]);
+        $adminDao = new AdministradorDao();
+        $msg = $adminDao->eliminar($_GET["eliminar"]);
         header("Location:../index.php?msg=$msg");
     }
 }

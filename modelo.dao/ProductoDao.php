@@ -6,7 +6,7 @@ class ProductoDao
         $cnn = Conexion::getConexion();
         $mensaje = "";
         try {
-            $query = $cnn->prepare("INSERT INTO producto values (?, ?, ?, ?, ?)");
+            $query = $cnn->prepare("INSERT INTO producto values (NULL, ?, ?, ?, ?)");
             $query->bindParam(1, $productoDto->getIdProducto());
             $query->bindParam(2, $productoDto->getNombre());
             $query->bindParam(3, $productoDto->getDescripcion());

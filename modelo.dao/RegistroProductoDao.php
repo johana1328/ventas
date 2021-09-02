@@ -6,10 +6,10 @@ class RegistroProductoDao
         $cnn = Conexion::getConexion(); 
         $mensaje = "";
         try {
-            $query = $cnn->prepare("INSERT INTO registroProducto values (?, ?, ?)");
+            $query = $cnn->prepare("INSERT INTO registroProducto values (NULL, ?, ?)");
             $query->bindParam(1, $registroProductoDto->getIdRegistroProducto());
-            $query->bindParam(2, $registroProductoDto->getIdAdministrador()); 
-            $query->bindParam(3, $registroProductoDto->getIdProducto());
+            $query->bindParam(2, $registroProductoDto->getIdAdministrador()->getIdAdministrador()); 
+            $query->bindParam(3, $registroProductoDto->getIdProducto()->getIdProducto());
 
             $query->execute();
 
@@ -30,8 +30,8 @@ class RegistroProductoDao
         try {
             $query = $cnn->prepare("UPDATE registroProducto SET idRegistroProducto=?,idAdministrador=?, idProducto=? WHERE idRegistroProducto=?");
             $query->bindParam(1, $registroProductoDto->getIdRegistroProducto());
-            $query->bindParam(2, $registroProductoDto->getIdAdministrador());
-            $query->bindParam(3, $registroProductoDto->getIdProducto());
+            $query->bindParam(2, $registroProductoDto->getIdAdministrador()->getIdAdministrador());
+            $query->bindParam(3, $registroProductoDto->getIdProducto()->getIdProducto());
             $query->execute();
             $mensaje = "Registro Actualizado";
         } catch (Exception $ex) {
