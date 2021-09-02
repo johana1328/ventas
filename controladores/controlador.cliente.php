@@ -3,6 +3,12 @@
 require "../modelo.dto/ClienteDto.php";
 require "../modelo.dao/ClienteDao.php";
 
+if (isset($_POST["registrar"])) {
+    registrar();
+} else if (isset($_POST["eliminar"])) {
+    eliminar();
+}
+
 function registrar(UsuarioDto $usuarioDto)
 {
     $clienteDto = new ClienteDto();

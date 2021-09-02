@@ -3,6 +3,13 @@ require "../utilidades/conexion.php";
 require "../modelo.dto/DetalleVentaDto.php";
 require "../modelo.dao/DetalleVentaDao.php";
 
+if (isset($_POST["registrar"])) {
+    registrar();
+} else if (isset($_POST["modificar"])) {
+    modificar();
+} else if (isset($_POST["eliminar"])) {
+    eliminar();
+}
 
 function registrar(VentaDto $ventaDto, ProductoDto $productoDto)
 {

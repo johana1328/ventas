@@ -3,8 +3,16 @@ require "../utilidades/conexion.php";
 require "../modelo.dto/UsuarioDto.php";
 require "../modelo.dao/UsuarioDao.php";
 
+if (isset($_POST["registrar"])) {
+    registrar();
+} else if (isset($_POST["modificar"])) {
+    modificar();
+} else if (isset($_POST["eliminar"])) {
+    eliminar();
+}
 
-function registrar(){
+function registrar()
+{
     $usuarioDto = new UsuarioDto();
     $usuarioDao = new UsuarioDao();
     $usuarioDto->setIdUsuario($_POST["idUsuario"]);
@@ -17,7 +25,8 @@ function registrar(){
     header("Location:../index.php?msg=$msg");
 }
 
-function modificar(){
+function modificar()
+{
     $usuarioDto = new UsuarioDto();
     $usuarioDao = new UsuarioDao();
     $usuarioDto->setIdUsuario($_POST["idUsuario"]);
@@ -30,7 +39,8 @@ function modificar(){
     header("Location:../index.php?msg=$msg");
 }
 
-function eliminar(){
+function eliminar()
+{
     $usuarioDao = new UsuarioDao();
     $msg = $usuarioDao->eliminar($_GET["eliminar"]);
     header("Location:../index.php?msg=$msg");
