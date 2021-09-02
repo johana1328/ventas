@@ -3,12 +3,12 @@ class RegistroProductoDao
 {
     public function registrarRegistroProducto(RegistroProductoDto $registroProductoDto)
     {
-        $cnn = Conexion::getConexion();
+        $cnn = Conexion::getConexion(); 
         $mensaje = "";
         try {
             $query = $cnn->prepare("INSERT INTO registroProducto values (?, ?, ?)");
             $query->bindParam(1, $registroProductoDto->getIdRegistroProducto());
-            $query->bindParam(2, $registroProductoDto->getIdAdministrador());
+            $query->bindParam(2, $registroProductoDto->getIdAdministrador()); 
             $query->bindParam(3, $registroProductoDto->getIdProducto());
 
             $query->execute();
